@@ -740,7 +740,7 @@
     <div class="app-header">
       <h1 class="app-title">Brief erstellen</h1>
       <div class="app-counter">
-        <span id="counter-text">Testbriefe übrig: <strong id="counter-num">3</strong> / 3</span>
+        <span id="counter-text">Lade...</span>
       </div>
     </div>
 
@@ -1153,9 +1153,8 @@
     selectedType = el.dataset.type;
   }
   function updateCounter() {
-    const counterNum = document.getElementById('counter-num');
     const counterText = document.getElementById('counter-text');
-    if (!counterNum || !currentCredits) return;
+    if (!counterText || !currentCredits) return;
     const plan = currentCredits.plan;
     if (plan === 'pro') {
       const left = Math.max(0, 300 - currentCredits.monthly_credits_used);
@@ -1165,7 +1164,6 @@
       counterText.innerHTML = `<strong>Standard</strong> · ${left} / 100 Briefe diesen Monat`;
     } else {
       const left = Math.max(0, CONFIG.FREE_LIMIT - currentCredits.test_credits_used);
-      counterNum.textContent = left;
       counterText.innerHTML = `Testbriefe übrig: <strong>${left}</strong> / ${CONFIG.FREE_LIMIT}`;
     }
   }
